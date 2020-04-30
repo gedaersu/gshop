@@ -1,28 +1,27 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <HelloWorld/>
+  <div>
+    <!--显示当前路由组件-->
+    <router-view></router-view>
+    <FootGuide/><!--v-show="$route.meta.showFooter"-->
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
-
+import FootGuide from './components/FootGuide/FootGuide.vue'
 export default {
-  name: 'App',
+  created () {
+    // 异步获取 address
+    this.$store.dispatch('getAddress')
+    // 异步获取登陆用户信息
+    this.$store.dispatch('getUserInfo')
+  },
+
   components: {
-    HelloWorld
+    FootGuide
   }
 }
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang="stylus" rel="stylesheet/stylus">
+
 </style>
